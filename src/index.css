@@ -4,6 +4,7 @@
 
 @layer base {
   html {
-    font-family: "Outfit", system-ui, sans-serif;
+    font-family: "Quicksand", system-ui, sans-serif;
+    font-weight: 500;
   }
 }
