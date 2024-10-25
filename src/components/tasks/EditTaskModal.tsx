@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import {
   Dialog,
   DialogPanel,
@@ -7,9 +8,31 @@ import {
   Transition,
   TransitionChild
 } from "@headlessui/react";
+import TaskForm from "./TaskForm";
+import { Task, TaskFormData } from "@/types/index";
 
-export default function EditTaskModal() {
+type EditTaskModalProps = {
+  data: Task;
+};
+
+export default function EditTaskModal({ data }: EditTaskModalProps) {
   const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm<TaskFormData>({
+    defaultValues: {
+      name: data.name,
+      description: data.description
+    }
+  });
+
+  const handleEditTask = (formData: TaskFormData) => {
+    console.log("formData:", formData);
+  };
 
   return (
     <Transition appear show={true} as={Fragment}>
@@ -51,7 +74,13 @@ export default function EditTaskModal() {
                   <span className="text-fuchsia-600">este formulario</span>
                 </p>
 
-                <form className="mt-10 space-y-3" noValidate>
+                <form
+                  className="mt-10 space-y-3"
+                  onSubmit={handleSubmit(handleEditTask)}
+                  noValidate
+                >
+                  <TaskForm register={register} errors={errors} />
+
                   <input
                     type="submit"
                     className=" bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3  text-white font-black  text-xl cursor-pointer"
