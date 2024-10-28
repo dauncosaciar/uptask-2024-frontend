@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   Menu,
   MenuButton,
@@ -22,12 +22,15 @@ export default function TaskCard({ task }: TaskCardProps) {
   const params = useParams();
   const projectId = params.projectId!;
 
+  const queryClient = useQueryClient();
+
   const { mutate } = useMutation({
     mutationFn: deleteTask,
     onError: error => {
       toast.error(error.message);
     },
     onSuccess: data => {
+      queryClient.invalidateQueries({ queryKey: ["project", projectId] });
       toast.success(data);
     }
   });
