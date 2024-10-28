@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import {
   Dialog,
   DialogPanel,
@@ -6,15 +6,50 @@ import {
   Transition,
   TransitionChild
 } from "@headlessui/react";
-import { useLocation, useNavigate } from "react-router-dom";
+import {
+  Navigate,
+  useLocation,
+  useNavigate,
+  useParams
+} from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import { getTaskById } from "@/api/TaskApi";
 
 export default function TaskModalDetails() {
+  const [errorTask, setErrorTask] = useState(false);
+
+  const params = useParams();
+  const projectId = params.projectId!;
   const navigate = useNavigate();
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const taskId = queryParams.get("viewTask");
+  const taskId = queryParams.get("viewTask")!;
   const show = taskId ? true : false;
+
+  const { data, isError, error } = useQuery({
+    queryKey: ["task", taskId],
+    queryFn: () => getTaskById({ projectId, taskId }),
+    enabled: !!taskId,
+    retry: false
+  });
+
+  useEffect(() => {
+    const errorNavigate = () => {
+      if (isError) {
+        toast.error(error.message, { toastId: "error" });
+        setErrorTask(true);
+      }
+    };
+    errorNavigate();
+  }, [isError, error]);
+
+  if (isError && errorTask) {
+    return <Navigate to={`/projects/${projectId}`} />;
+  }
+
+  console.log("data:", data);
 
   return (
     <>
