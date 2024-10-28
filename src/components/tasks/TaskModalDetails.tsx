@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { ChangeEvent, Fragment, useEffect, useState } from "react";
 import {
   Dialog,
   DialogPanel,
@@ -12,11 +12,12 @@ import {
   useNavigate,
   useParams
 } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { getTaskById } from "@/api/TaskApi";
+import { getTaskById, updateStatus } from "@/api/TaskApi";
 import { formatDate } from "@/utils/utils";
 import { statusTranslations } from "@/locales/es";
+import { TaskStatus } from "@/types/index";
 
 export default function TaskModalDetails() {
   const [errorTask, setErrorTask] = useState(false);
@@ -46,6 +47,26 @@ export default function TaskModalDetails() {
     };
     errorNavigate();
   }, [isError, error]);
+
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: updateStatus,
+    onError: error => {
+      toast.error(error.message);
+    },
+    onSuccess: data => {
+      queryClient.invalidateQueries({ queryKey: ["project", projectId] });
+      queryClient.invalidateQueries({ queryKey: ["task", taskId] });
+      toast.success(data);
+    }
+  });
+
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const status = e.target.value as TaskStatus;
+    const data = { projectId, taskId, status };
+    mutate(data);
+  };
 
   if (isError && errorTask) {
     return <Navigate to={`/projects/${projectId}`} />;
@@ -105,6 +126,7 @@ export default function TaskModalDetails() {
                       <select
                         className="w-full p-3 bg-white border border-gray-300"
                         defaultValue={data.status}
+                        onChange={handleChange}
                       >
                         {Object.entries(statusTranslations).map(
                           ([key, value]) => (
