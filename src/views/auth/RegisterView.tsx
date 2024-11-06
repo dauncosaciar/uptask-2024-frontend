@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
 import { UserRegistrationForm } from "@/types/index";
+import { toast } from "react-toastify";
 import ErrorMessage from "@/components/ErrorMessage";
+import { createAccount } from "@/api/AuthApi";
 
 export default function RegisterView() {
   const initialValues: UserRegistrationForm = {
@@ -19,9 +22,20 @@ export default function RegisterView() {
     formState: { errors }
   } = useForm<UserRegistrationForm>({ defaultValues: initialValues });
 
+  const { mutate } = useMutation({
+    mutationFn: createAccount,
+    onError: error => {
+      toast.error(error.message);
+    },
+    onSuccess: data => {
+      toast.success(data);
+      reset();
+    }
+  });
+
   const password = watch("password");
 
-  const handleRegister = (formData: UserRegistrationForm) => {};
+  const handleRegister = (formData: UserRegistrationForm) => mutate(formData);
 
   return (
     <>
@@ -93,7 +107,7 @@ export default function RegisterView() {
           <label className="font-normal text-2xl">Repetir Password</label>
 
           <input
-            id="password_confirmation"
+            id="passwordConfirmation"
             type="password"
             placeholder="Repite Password de Registro"
             className="w-full p-3 border-gray-300 border"
