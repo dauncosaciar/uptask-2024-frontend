@@ -12,6 +12,11 @@ export type Auth = z.infer<typeof authSchema>;
 
 export type UserLoginForm = Pick<Auth, "email" | "password">;
 
+export type UserRegistrationForm = Pick<
+  Auth,
+  "name" | "email" | "password" | "passwordConfirmation"
+>;
+
 // Projects
 export const projectSchema = z.object({
   _id: z.string(),
