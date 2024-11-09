@@ -5,7 +5,8 @@ export const authSchema = z.object({
   name: z.string(),
   email: z.string().email(),
   password: z.string(),
-  passwordConfirmation: z.string()
+  passwordConfirmation: z.string(),
+  token: z.string()
 });
 
 export type Auth = z.infer<typeof authSchema>;
@@ -16,6 +17,8 @@ export type UserRegistrationForm = Pick<
   Auth,
   "name" | "email" | "password" | "passwordConfirmation"
 >;
+
+export type ConfirmToken = Pick<Auth, "token">;
 
 // Projects
 export const projectSchema = z.object({
