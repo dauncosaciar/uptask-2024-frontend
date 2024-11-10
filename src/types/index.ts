@@ -18,6 +18,8 @@ export type UserRegistrationForm = Pick<
   "name" | "email" | "password" | "passwordConfirmation"
 >;
 
+export type RequestConfirmationCodeForm = Pick<Auth, "email">;
+
 export type ConfirmToken = Pick<Auth, "token">;
 
 // Projects
