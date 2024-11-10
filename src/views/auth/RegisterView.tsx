@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { UserRegistrationForm } from "@/types/index";
 import { toast } from "react-toastify";
+import { UserRegistrationForm } from "@/types/index";
 import ErrorMessage from "@/components/ErrorMessage";
 import { createAccount } from "@/api/AuthApi";
 
@@ -42,7 +42,7 @@ export default function RegisterView() {
       <h1 className="text-5xl font-black text-white">Crear Cuenta</h1>
       <p className="text-2xl font-light text-white mt-5">
         Llena el formulario para {""}
-        <span className=" text-fuchsia-500 font-bold"> crear tu cuenta</span>
+        <span className="text-fuchsia-500 font-bold">crear tu cuenta</span>
       </p>
 
       <form
@@ -63,7 +63,7 @@ export default function RegisterView() {
               required: "El Email de registro es obligatorio",
               pattern: {
                 value: /\S+@\S+\.\S+/,
-                message: "E-mail no válido"
+                message: "Email no válido"
               }
             })}
           />
