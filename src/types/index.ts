@@ -20,6 +20,8 @@ export type UserRegistrationForm = Pick<
 
 export type RequestConfirmationCodeForm = Pick<Auth, "email">;
 
+export type ForgotPasswordForm = Pick<Auth, "email">;
+
 export type ConfirmToken = Pick<Auth, "token">;
 
 // Projects
