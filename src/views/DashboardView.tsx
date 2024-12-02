@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { deleteProject, getProjects } from "@/api/ProjectApi";
 import { useAuth } from "@/hooks/useAuth";
+import { isManager } from "@/utils/policies";
 
 export default function DashboardView() {
   const { data: user, isLoading: authLoading } = useAuth();
@@ -67,7 +68,7 @@ export default function DashboardView() {
                 <div className="flex min-w-0 gap-x-4">
                   <div className="min-w-0 flex-auto space-y-2">
                     <div className="mb-2">
-                      {project.manager === user._id ? (
+                      {isManager(project.manager, user._id) ? (
                         <p className="font-bold text-xs uppercase bg-indigo-50 text-indigo-500 border-2 border-indigo-500 rounded-lg inline-block py-1 px-5">
                           Manager
                         </p>
@@ -119,7 +120,7 @@ export default function DashboardView() {
                           </Link>
                         </MenuItem>
 
-                        {project.manager === user._id && (
+                        {isManager(project.manager, user._id) && (
                           <>
                             <MenuItem>
                               <Link
