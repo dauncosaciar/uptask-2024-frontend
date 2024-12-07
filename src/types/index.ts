@@ -10,20 +10,14 @@ export const authSchema = z.object({
 });
 
 export type Auth = z.infer<typeof authSchema>;
-
 export type UserLoginForm = Pick<Auth, "email" | "password">;
-
 export type UserRegistrationForm = Pick<
   Auth,
   "name" | "email" | "password" | "passwordConfirmation"
 >;
-
 export type RequestConfirmationCodeForm = Pick<Auth, "email">;
-
 export type ForgotPasswordForm = Pick<Auth, "email">;
-
 export type NewPasswordForm = Pick<Auth, "password" | "passwordConfirmation">;
-
 export type ConfirmToken = Pick<Auth, "token">;
 
 // Users
@@ -58,11 +52,21 @@ export const dashboardProjectSchema = z.array(
 );
 
 export type Project = z.infer<typeof projectSchema>;
-
 export type ProjectFormData = Pick<
   Project,
   "projectName" | "clientName" | "description"
 >;
+
+// Notes
+export const noteSchema = z.object({
+  _id: z.string(),
+  content: z.string(),
+  createdBy: userSchema,
+  task: z.string()
+});
+
+export type Note = z.infer<typeof noteSchema>;
+export type NoteFormData = Pick<Note, "content">;
 
 // Tasks
 export const taskStatusSchema = z.enum([
@@ -91,9 +95,7 @@ export const taskSchema = z.object({
 });
 
 export type TaskStatus = z.infer<typeof taskStatusSchema>;
-
 export type Task = z.infer<typeof taskSchema>;
-
 export type TaskFormData = Pick<Task, "name" | "description">;
 
 // Team
@@ -104,7 +106,5 @@ export const teamMemberSchema = userSchema.pick({
 });
 
 export const teamMembersSchema = z.array(teamMemberSchema);
-
 export type TeamMember = z.infer<typeof teamMemberSchema>;
-
 export type TeamMemberForm = Pick<TeamMember, "email">;
