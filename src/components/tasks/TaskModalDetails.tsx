@@ -129,7 +129,7 @@ export default function TaskModalDetails() {
                     {data.completedBy && (
                       <ul className="list-decimal pl-8 text-sm text-slate-600">
                         {data.completedBy.map(logActivity => (
-                          <li key={logActivity._id} className="">
+                          <li key={logActivity._id}>
                             <span className="font-bold">
                               {statusTranslations[logActivity.status]}
                             </span>{" "}
