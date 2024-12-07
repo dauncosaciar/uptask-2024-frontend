@@ -122,6 +122,8 @@ export default function TaskModalDetails() {
                       Descripción: {data.description}
                     </p>
 
+                    <hr className="border-gray-300 my-5" />
+
                     <p className="text-2xl text-slate-500 mb-2">
                       Historial de Cambios
                     </p>
