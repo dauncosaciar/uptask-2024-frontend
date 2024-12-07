@@ -122,27 +122,26 @@ export default function TaskModalDetails() {
                       Descripción: {data.description}
                     </p>
 
-                    <hr className="border-gray-300 my-5" />
-
-                    <p className="text-2xl text-slate-500 mb-2">
-                      Historial de Cambios
-                    </p>
-
-                    {data.completedBy && (
-                      <ul className="list-decimal pl-8 text-sm text-slate-600">
-                        {data.completedBy.map(logActivity => (
-                          <li key={logActivity._id}>
-                            <span className="font-bold">
-                              {statusTranslations[logActivity.status]}
-                            </span>{" "}
-                            por:{" "}
-                            <span className="text-black">
-                              {logActivity.user.name}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                    {data.completedBy.length ? (
+                      <>
+                        <p className="text-2xl text-slate-500 mb-2">
+                          Historial de Cambios
+                        </p>
+                        <ul className="list-decimal pl-8 text-sm text-slate-600">
+                          {data.completedBy.map(logActivity => (
+                            <li key={logActivity._id}>
+                              <span className="font-bold">
+                                {statusTranslations[logActivity.status]}
+                              </span>{" "}
+                              por:{" "}
+                              <span className="text-black">
+                                {logActivity.user.name}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    ) : null}
 
                     <div className="my-5 space-y-3">
                       <label className="font-bold">Estado Actual:</label>
