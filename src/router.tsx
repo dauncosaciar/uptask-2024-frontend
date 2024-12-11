@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppLayout from "@/layouts/AppLayout";
 import AuthLayout from "@/layouts/AuthLayout";
+import ProfileLayout from "@/layouts/ProfileLayout";
 import DashboardView from "@/views/DashboardView";
 import CreateProjectView from "@/views/projects/CreateProjectView";
 import EditProjectView from "@/views/projects/EditProjectView";
@@ -12,6 +13,8 @@ import RequestNewCodeView from "@/views/auth/RequestNewCodeView";
 import ForgotPasswordView from "@/views/auth/ForgotPasswordView";
 import NewPasswordView from "@/views/auth/NewPasswordView";
 import ProjectTeamView from "@/views/projects/ProjectTeamView";
+import ProfileView from "@/views/profile/ProfileView";
+import ChangePasswordView from "@/views/profile/ChangePasswordView";
 
 export default function Router() {
   return (
@@ -29,6 +32,14 @@ export default function Router() {
             path="/projects/:projectId/team"
             element={<ProjectTeamView />}
           />
+
+          <Route element={<ProfileLayout />}>
+            <Route path="/profile" element={<ProfileView />} />
+            <Route
+              path="/profile/update-password"
+              element={<ChangePasswordView />}
+            />
+          </Route>
         </Route>
 
         <Route element={<AuthLayout />}>
