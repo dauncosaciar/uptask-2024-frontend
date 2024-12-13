@@ -1,6 +1,9 @@
 import { useForm } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 import ErrorMessage from "../ErrorMessage";
 import { User, UserProfileForm } from "@/types/index";
+import { updateProfile } from "@/api/ProfileApi";
 
 type ProfileFormProps = {
   data: User;
@@ -13,19 +16,30 @@ export default function ProfileForm({ data }: ProfileFormProps) {
     formState: { errors }
   } = useForm<UserProfileForm>({ defaultValues: data });
 
-  const handleEditProfile = (formData: UserProfileForm) => {};
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: updateProfile,
+    onError: error => toast.error(error.message),
+    onSuccess: data => {
+      toast.success(data);
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+    }
+  });
+
+  const handleEditProfile = (formData: UserProfileForm) => mutate(formData);
 
   return (
     <>
       <div className="mx-auto max-w-3xl g">
-        <h1 className="text-5xl font-black ">Mi Perfil</h1>
+        <h1 className="text-5xl font-black">Mi Perfil</h1>
         <p className="text-2xl font-light text-gray-500 mt-5">
           Aquí puedes actualizar tu información
         </p>
 
         <form
           onSubmit={handleSubmit(handleEditProfile)}
-          className=" mt-14 space-y-5  bg-white shadow-lg p-10 rounded-l"
+          className=" mt-14 space-y-5 bg-white shadow-lg p-10 rounded-l"
           noValidate
         >
           <div className="mb-5 space-y-3">
@@ -46,7 +60,7 @@ export default function ProfileForm({ data }: ProfileFormProps) {
 
           <div className="mb-5 space-y-3">
             <label className="text-sm uppercase font-bold" htmlFor="password">
-              E-mail
+              Email
             </label>
             <input
               id="text"
