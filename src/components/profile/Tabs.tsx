@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 const tabs = [
   { name: "Mi Cuenta", href: "/profile", icon: UserIcon },
   {
-    name: "Cambiar Password",
+    name: "Cambiar Contraseña",
     href: "/profile/update-password",
     icon: FingerPrintIcon
   }

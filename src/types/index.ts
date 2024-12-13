@@ -4,6 +4,7 @@ import { z } from "zod";
 export const authSchema = z.object({
   name: z.string(),
   email: z.string().email(),
+  currentPassword: z.string(),
   password: z.string(),
   passwordConfirmation: z.string(),
   token: z.string()
@@ -18,6 +19,10 @@ export type UserRegistrationForm = Pick<
 export type RequestConfirmationCodeForm = Pick<Auth, "email">;
 export type ForgotPasswordForm = Pick<Auth, "email">;
 export type NewPasswordForm = Pick<Auth, "password" | "passwordConfirmation">;
+export type UpdateCurrentUserPasswordForm = Pick<
+  Auth,
+  "currentPassword" | "password" | "passwordConfirmation"
+>;
 export type ConfirmToken = Pick<Auth, "token">;
 
 // Users
