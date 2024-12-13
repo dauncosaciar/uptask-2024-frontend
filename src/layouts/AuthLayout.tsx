@@ -15,7 +15,13 @@ export default function AuthLayout() {
         </div>
       </div>
 
-      <ToastContainer pauseOnHover={false} pauseOnFocusLoss={false} />
+      <ToastContainer
+        newestOnTop
+        position="bottom-left"
+        pauseOnHover={false}
+        pauseOnFocusLoss={false}
+        theme="colored"
+      />
     </>
   );
 }

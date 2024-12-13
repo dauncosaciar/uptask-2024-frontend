@@ -37,7 +37,13 @@ export default function AppLayout() {
           </p>
         </footer>
 
-        <ToastContainer pauseOnHover={false} pauseOnFocusLoss={false} />
+        <ToastContainer
+          newestOnTop
+          position="bottom-left"
+          pauseOnHover={false}
+          pauseOnFocusLoss={false}
+          theme="colored"
+        />
       </>
     );
 }
