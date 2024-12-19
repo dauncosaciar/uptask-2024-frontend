@@ -41,7 +41,11 @@ export default function TaskCard({ task, canEdit }: TaskCardProps) {
     }
   });
 
-  const style = transform ? {} : undefined;
+  const style = transform
+    ? {
+        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`
+      }
+    : undefined;
 
   return (
     <li className="p-5 bg-white border border-slate-300 flex justify-between gap-3">
