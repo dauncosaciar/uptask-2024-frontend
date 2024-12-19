@@ -8,11 +8,12 @@ import {
 } from "@headlessui/react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import ErrorMessage from "../ErrorMessage";
 import { CheckPasswordForm } from "@/types/index";
 import { checkPassword } from "@/api/AuthApi";
+import { deleteProject } from "@/api/ProjectApi";
 
 export default function DeleteProjectModal() {
   const initialValues: CheckPasswordForm = {
@@ -31,14 +32,28 @@ export default function DeleteProjectModal() {
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
+  const queryClient = useQueryClient();
+
   const checkUserPasswordMutation = useMutation({
     mutationFn: checkPassword,
     onError: error => toast.error(error.message)
   });
 
+  const deleteProjectMutation = useMutation({
+    mutationFn: deleteProject,
+    onError: error => {
+      toast.error(error.message);
+    },
+    onSuccess: data => {
+      toast.success(data);
+      queryClient.invalidateQueries({ queryKey: ["projects"] });
+      navigate(location.pathname, { replace: true });
+    }
+  });
+
   const handleForm = async (formData: CheckPasswordForm) => {
     await checkUserPasswordMutation.mutateAsync(formData);
-    console.log("después de la mutación...");
+    await deleteProjectMutation.mutateAsync(deleteProjectId);
   };
 
   return (
