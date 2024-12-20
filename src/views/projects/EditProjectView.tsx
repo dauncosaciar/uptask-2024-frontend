@@ -13,7 +13,7 @@ export default function EditProjectView() {
     retry: false
   });
 
-  if (isLoading) return <p className="text-2xl text-center">Cargando...</p>;
+  if (isLoading) return "Cargando...";
 
   if (isError) return <Navigate to="/404" />;
 

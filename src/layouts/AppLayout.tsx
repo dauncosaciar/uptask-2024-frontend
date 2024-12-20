@@ -8,7 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 export default function AppLayout() {
   const { data, isError, isLoading } = useAuth();
 
-  if (isLoading) return <p className="text-2xl text-center">Cargando...</p>;
+  if (isLoading) return "Cargando...";
 
   if (isError) return <Navigate to="/auth/login" />;
 

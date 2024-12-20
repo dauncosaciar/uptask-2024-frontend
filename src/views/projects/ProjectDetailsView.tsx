@@ -24,8 +24,7 @@ export default function ProjectDetailsView() {
 
   const canEdit = useMemo(() => data?.manager === user?._id, [data, user]);
 
-  if (isLoading && authLoading)
-    return <p className="text-2xl text-center">Cargando...</p>;
+  if (isLoading && authLoading) return "Cargando...";
 
   if (isError) return <Navigate to="/404" />;
 

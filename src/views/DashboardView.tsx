@@ -25,8 +25,7 @@ export default function DashboardView() {
     queryFn: getProjects
   });
 
-  if (isLoading && authLoading)
-    return <p className="text-2xl text-center">Cargando...</p>;
+  if (isLoading && authLoading) return "Cargando...";
 
   if (data && user)
     return (

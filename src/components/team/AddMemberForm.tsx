@@ -69,7 +69,7 @@ export default function AddMemberForm() {
       </form>
 
       <div className="mt-5">
-        {mutation.isPending && <p className="text-center">Cargando...</p>}
+        {mutation.isPending && "Cargando..."}
         {mutation.error && (
           <p className="text-center">{mutation.error.message}</p>
         )}
