@@ -11,11 +11,11 @@ import {
 } from "@headlessui/react";
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
 import { toast } from "react-toastify";
-import { Task } from "@/types/index";
+import { TaskProject } from "@/types/index";
 import { deleteTask } from "@/api/TaskApi";
 
 type TaskCardProps = {
-  task: Task;
+  task: TaskProject;
   canEdit: boolean;
 };
 
