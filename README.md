@@ -1,50 +1,43 @@
-# React + TypeScript + Vite
+## Resumen de App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**URL de API:** [https://uptask-2024-frontend.vercel.app/](https://uptask-2024-frontend.vercel.app/)
 
-Currently, two official plugins are available:
+La siguiente se trata de la app Frontend de _**UpTask**_. Como se mencionó en el repositorio del Backend, la app tiene la siguiente funcionalidad:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Usuarios:
 
-## Expanding the ESLint configuration
+   - Registro.
+   - Login.
+   - Roles en los Proyectos (`Manager` o `Colaborador`)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+2. Proyectos:
 
-- Configure the top-level `parserOptions` property like this:
+   - Creación.
+   - Listado.
+   - Actualización.
+   - Eliminación.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+3. Tareas por Proyecto:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+   - Creación.
+   - Listado.
+   - Actualización.
+   - Eliminación.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+4. Colaboradores:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+   - Asignar o quitar colaboradores a un proyecto.
+
+## Tecnologías utilizadas para desarrollo
+
+Las tecnologías utilizadas para realizar esta aplicación son las siguientes:
+
+`Vite` / `React.js` / `TypeScript` / `React-Query` / `React Hook Form` / `Zod` / `React Router` / `Tailwind CSS` / `Dnd Kit`
+
+## Referencia al Frontend
+
+Puedes ver la información del Backend de UpTask en [https://github.com/dauncosaciar/uptask-2024-backend](https://github.com/dauncosaciar/uptask-2024-backend)
+
+---
+
+PROYECTO REALIZADO DESDE EL CURSO DE UDEMY: [React y TypeScript - La Guía Completa Creando +10 Proyectos](https://www.udemy.com/course/react-de-principiante-a-experto-creando-mas-de-10-aplicaciones/)
