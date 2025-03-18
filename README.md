@@ -1,6 +1,6 @@
 ## Resumen de App
 
-**URL de API:** [https://uptask-2024-frontend.vercel.app/](https://uptask-2024-frontend.vercel.app/)
+**URL de APP:** [https://uptask-2024-frontend.vercel.app/](https://uptask-2024-frontend.vercel.app/)
 
 La siguiente se trata de la app Frontend de _**UpTask**_. Se trata de un gestor de tareas. Como se mencionó en el repositorio del Backend, la app tiene la siguiente funcionalidad:
 
