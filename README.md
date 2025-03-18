@@ -2,7 +2,7 @@
 
 **URL de API:** [https://uptask-2024-frontend.vercel.app/](https://uptask-2024-frontend.vercel.app/)
 
-La siguiente se trata de la app Frontend de _**UpTask**_. Como se mencionó en el repositorio del Backend, la app tiene la siguiente funcionalidad:
+La siguiente se trata de la app Frontend de _**UpTask**_. Se trata de un gestor de tareas. Como se mencionó en el repositorio del Backend, la app tiene la siguiente funcionalidad:
 
 1. Usuarios:
 
@@ -34,7 +34,21 @@ Las tecnologías utilizadas para realizar esta aplicación son las siguientes:
 
 `Vite` / `React.js` / `TypeScript` / `React-Query` / `React Hook Form` / `Zod` / `React Router` / `Tailwind CSS` / `Dnd Kit`
 
-## Referencia al Frontend
+## Datos de prueba
+
+Para probar el funcionamiento de la App, puedes utilizar los siguientes datos de usuarios:
+
+1. Usuario Manager de un proyecto:
+
+   - Email: `manager@usuario.com`
+   - Password: `123456789`
+
+2. Usuario Colaborador de un proyecto:
+
+   - Email: `colaborador@usuario.com`
+   - Password: `123456789`
+
+## Referencia al Backend
 
 Puedes ver la información del Backend de UpTask en [https://github.com/dauncosaciar/uptask-2024-backend](https://github.com/dauncosaciar/uptask-2024-backend)
 
